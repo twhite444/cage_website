@@ -9,27 +9,30 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Full-width background image with enhanced gradient overlay */}
-        <div className="absolute inset-0 z-0">          <img 
-            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80" 
-            alt="" 
-            className="w-full h-full object-cover"
-            aria-hidden="true"
-            loading="eager"
-            fetchpriority="high"
-          /><div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,18,18,0.9)] via-[rgba(30,30,30,0.75)] to-[rgba(37,37,37,0.6)]"></div>
-          {/* Additional radial gradient for vignette effect */}
-          <div className="absolute inset-0" 
-               style={{background: 'radial-gradient(circle, transparent 40%, rgba(18,18,18,0.4) 100%)'}}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            {/* Increased hero text size with improved hierarchy */}          <h1 className="text-6xl md:text-8xl font-bold text-(--color-ivory) mb-8 leading-tight font-display tracking-tight" style={{textShadow: '0 4px 12px rgba(0,0,0,0.5)'}}>
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/public/cage_bar.png" 
+          alt="" 
+          className="w-full h-full object-cover"
+          aria-hidden="true"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,18,18,0.9)] via-[rgba(30,30,30,0.75)] to-[rgba(37,37,37,0.6)]"></div>
+        {/* Additional radial gradient for vignette effect */}
+        <div className="absolute inset-0" 
+             style={{background: 'radial-gradient(circle, transparent 40%, rgba(18,18,18,0.4) 100%)'}}></div>
+      </div>
+      
+      <div className="container mx-auto px-4 z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          {/* Increased hero text size with improved hierarchy */}
+          <h1 className="text-6xl md:text-8xl font-bold text-(--color-ivory) mb-8 leading-tight font-display tracking-tight" style={{textShadow: '0 4px 12px rgba(0,0,0,0.5)'}}>
             <span className="text-(--color-gold) block md:inline" style={{textShadow: '0 4px 12px rgba(0,0,0,0.5)'}}>The Cage</span>
           </h1>
           <p className="text-2xl md:text-3xl text-(--color-gold) font-medium max-w-2xl mx-auto mb-6 font-display italic drop-shadow-lg">
