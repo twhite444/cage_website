@@ -130,12 +130,12 @@ export const businessInfo = {
     instagram: 'batescagestuff'
   },
   hours: {
-    monday: '7:00 AM - 10:00 PM',
-    tuesday: '7:00 AM - 10:00 PM',
-    wednesday: '7:00 AM - 10:00 PM',
-    thursday: '7:00 AM - 10:00 PM',
-    friday: '7:00 AM - 11:00 PM',
-    saturday: '8:00 AM - 11:00 PM',
-    sunday: '8:00 AM - 8:00 PM',
+    monday: '12:00 PM - Close',
+    tuesday: '12:00 PM - Close',
+    wednesday: '12:00 PM - Close',
+    thursday: '12:00 PM - Close',
+    friday: '12:00 PM - Close',
+    saturday: '10:00 AM - Close',
+    sunday: '10:00 AM - Close',
   }
 };

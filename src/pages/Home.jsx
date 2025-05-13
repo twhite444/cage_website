@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import PlanYourVisit from '../components/PlanYourVisit';
 import HoursContact from '../components/HoursContact';
+import StayConnected from '../components/StayConnected';
 import Footer from '../components/Footer';
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       <Hero />
       <PlanYourVisit />
       <HoursContact />
+      <StayConnected />
       <Footer />
     </div>
   );

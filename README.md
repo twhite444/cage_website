@@ -1,12 +1,36 @@
-# React + Vite
+# The Cage Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the official website for The Cage, a student-run café at Bates College.
 
-Currently, two official plugins are available:
+## Components
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### StayConnected Component
 
-## Expanding the ESLint configuration
+The StayConnected component displays the most recent Instagram posts from the Cage's Instagram account (@batescagestuff). 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+To set up the Instagram feed:
+
+1. Sign up at [LightWidget](https://lightwidget.com/) (it's free)
+2. Connect your Instagram account
+3. Create a widget for 3 columns
+4. Replace the widgetId in the StayConnected.jsx component with your own widget ID from LightWidget
+
+```jsx
+// Example usage
+import StayConnected from './components/StayConnected';
+
+function App() {
+  return (
+    <div>
+      <StayConnected />
+    </div>
+  );
+}
+```
+
+## Development
+
+This project uses:
+- React with Vite for fast development
+- Tailwind CSS for styling
+- Framer Motion for animations

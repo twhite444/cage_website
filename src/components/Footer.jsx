@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaYelp } from 'react-icons/fa';
+import { MdLocationOn, MdPhone, MdEmail, MdWatchLater } from 'react-icons/md';
 import { businessInfo } from '../utils/constants';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,125 +12,173 @@ const Footer = () => {
   
   // Get hours for today
   const hoursToday = () => {
-    if (today === "Saturday" || today === "Sunday") {
-      return "12:00 PM - Close";
-    } else {
-      return "12:00 PM - Close";
+    const day = today.toLowerCase();
+    return businessInfo.hours[day] || "12:00 PM - Close";
+  };
+
+  // Animation for footer elements
+  const footerAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
     }
   };
   
   return (
-    <footer className="bg-(--color-darkPlum) text-white pt-12 pb-6">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
-          {/* Left Column - Logo & Social */}
-          <div>
-            <h3 className="text-2xl font-bold font-display text-(--color-gold) mb-2">The Cage</h3>
-            <p className="text-lg mb-6 text-(--color-ivory/90)">
+    <footer className="bg-darkPlum text-ivory pt-16 pb-8 relative overflow-hidden">
+      {/* Subtle background texture or pattern */}
+      <div className="absolute inset-0 bg-[url('/textures/noise-dark.png')] opacity-5 mix-blend-overlay pointer-events-none"></div>
+      
+      {/* Gold accent line at top */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-goldTan to-gold"></div>
+        <div className="container mx-auto px-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+        >{/* Column 1: Logo & About */}
+          <motion.div variants={footerAnimation}>
+            <h3 className="text-3xl font-bold font-display text-garnet mb-4">The Cage</h3>
+            <p className="text-lg mb-6 text-gold">
               Good Grog. Good Times.
             </p>
             
-            <div className="flex space-x-4 mb-6">
+            
+            {/* Social Media Icons with improved styling */}
+            <div className="flex space-x-4">
+              <a 
+                href={`https://instagram.com/${businessInfo.social.instagram}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Instagram"
+                className="rounded-full w-10 h-10 flex items-center justify-center bg-warmGray hover:bg-goldTan/20 border border-gold/20 transition-all duration-300 group"
+              >
+                <FaInstagram size={18} className="text-gold group-hover:text-gold" />
+              </a>
               <a 
                 href="https://facebook.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Facebook"
-                className="rounded-full w-10 h-10 flex items-center justify-center bg-transparent border border-(--color-ivory/20) hover:bg-(--color-gold/20) transition-colors duration-300"
+                className="rounded-full w-10 h-10 flex items-center justify-center bg-warmGray hover:bg-goldTan/20 border border-gold/20 transition-all duration-300 group"
               >
-                <FaFacebook size={18} className="text-(--color-ivory)" />
+                <FaFacebook size={18} className="text-gold group-hover:text-gold" />
               </a>
               <a 
-                href="https://instagram.com" 
+                href="https://yelp.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                aria-label="Instagram"
-                className="rounded-full w-10 h-10 flex items-center justify-center bg-transparent border border-(--color-ivory/20) hover:bg-(--color-gold/20) transition-colors duration-300"
+                aria-label="Yelp"
+                className="rounded-full w-10 h-10 flex items-center justify-center bg-warmGray hover:bg-goldTan/20 border border-gold/20 transition-all duration-300 group"
               >
-                <FaInstagram size={18} className="text-(--color-ivory)" />
+                <FaYelp size={18} className="text-gold group-hover:text-gold" />
               </a>
+            </div>          </motion.div>
+          
+          {/* Column 2: Contact Info */}
+          <motion.div variants={footerAnimation}>
+            <h3 className="text-lg font-bold text-gold mb-5 font-display">Contact Us</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <MdLocationOn className="text-gold text-xl mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-ivory/80">{businessInfo.address}</span>
+              </li>
+              <li className="flex items-start">
+                <MdPhone className="text-gold text-xl mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-ivory/80">{businessInfo.phone}</span>
+              </li>
+              <li className="flex items-start">
+                <MdEmail className="text-gold text-xl mr-3 mt-0.5 flex-shrink-0" />
+                <a 
+                  href={`mailto:${businessInfo.email}`} 
+                  className="text-ivory/80 hover:text-gold transition-colors duration-300"
+                >
+                  {businessInfo.email}
+                </a>
+              </li>
+            </ul>          </motion.div>
+          
+          {/* Column 3: Hours */}
+          <motion.div variants={footerAnimation}>
+            <h3 className="text-lg font-bold text-gold mb-5 font-display">Hours</h3>
+            <div className="mb-4">
+              <h4 className="flex items-center text-gold mb-2">
+                <MdWatchLater className="text-gold text-xl mr-2" />
+                <span>Today ({today})</span>
+              </h4>
+              <p className="text-ivory/80 ml-7">{hoursToday()}</p>
             </div>
             
-            <details className="text-sm text-(--color-ivory/70) cursor-pointer group">
-              <summary className="flex items-center">
+            {/* Additional hours information with expandable details */}
+            <details className="group cursor-pointer">
+              <summary className="text-ivory/80 hover:text-gold transition-colors duration-300 flex items-center">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-4 w-4 mr-2 text-(--color-gold) group-open:rotate-90 transition-transform duration-300" 
+                  className="h-4 w-4 text-gold group-open:rotate-90 transition-transform duration-300 mr-2" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-                Est. 1969 at Bates College
+                View All Hours
               </summary>
-              <p className="mt-2 pl-6 text-(--color-ivory/60)">
-                Serving the Bates community for over 50 years
-              </p>
+              <div className="mt-3 ml-6 space-y-1 text-sm">
+                <p className="flex justify-between text-ivory/70">
+                  <span>Monday:</span>
+                  <span>{businessInfo.hours.monday}</span>
+                </p>
+                <p className="flex justify-between text-ivory/70">
+                  <span>Tuesday:</span>
+                  <span>{businessInfo.hours.tuesday}</span>
+                </p>
+                <p className="flex justify-between text-ivory/70">
+                  <span>Wednesday:</span>
+                  <span>{businessInfo.hours.wednesday}</span>
+                </p>
+                <p className="flex justify-between text-ivory/70">
+                  <span>Thursday:</span>
+                  <span>{businessInfo.hours.thursday}</span>
+                </p>
+                <p className="flex justify-between text-ivory/70">
+                  <span>Friday:</span>
+                  <span>{businessInfo.hours.friday}</span>
+                </p>
+                <p className="flex justify-between text-ivory/70">
+                  <span>Saturday:</span>
+                  <span>{businessInfo.hours.saturday}</span>
+                </p>
+                <p className="flex justify-between text-ivory/70">
+                  <span>Sunday:</span>
+                  <span>{businessInfo.hours.sunday}</span>
+                </p>
+              </div>
             </details>
-          </div>
-          
-          {/* Right Column - Contact Us & Hours */}
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-(--color-gold)">Contact Us</h3>
-            
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-5 w-5 mr-3 text-(--color-gold) mt-0.5" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span className="text-(--color-ivory)">{businessInfo.address}</span>
-              </li>
-              <li className="flex items-start">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-5 w-5 mr-3 text-(--color-gold) mt-0.5" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 8V5z" />
-                </svg>
-                <span className="text-(--color-ivory)">{businessInfo.phone}</span>
-              </li>
-              <li className="flex items-start">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-5 w-5 mr-3 text-(--color-gold) mt-0.5" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span className="text-(--color-ivory)">{businessInfo.email}</span>
-              </li>
-            </ul>
-            
-            <div>
-              <h4 className="text-lg font-bold text-(--color-gold) mb-2">Hours Today</h4>
-              <p className="text-(--color-ivory)">{hoursToday()}</p>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         
-        <div className="border-t border-(--color-ivory/10) pt-6 mt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-(--color-ivory/60) mb-3 md:mb-0">
-            © {currentYear} The Cage. All rights reserved.
+        {/* Divider with gold gradient */}
+        <div className="h-px bg-gradient-to-r from-gold/5 via-gold/20 to-gold/5 my-8"></div>
+        
+        {/* Bottom section with copyright and links */}
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-ivory/60 mb-4 md:mb-0">
+            © {currentYear} The Cage at Bates College. All rights reserved.
           </p>
-          <div className="flex space-x-6">
-            <a href="#" className="text-sm text-(--color-ivory/60) hover:text-(--color-gold) transition-colors duration-300">Privacy Policy</a>
-            <span className="text-sm text-(--color-ivory/60) hidden md:inline">|</span>
-            <a href="#" className="text-sm text-(--color-ivory/60) hover:text-(--color-gold) transition-colors duration-300">Terms of Service</a>
-            <span className="text-sm text-(--color-ivory/60) hidden md:inline">|</span>
-            <a href="#" className="text-sm text-(--color-ivory/60) hover:text-(--color-gold) transition-colors duration-300">Accessibility</a>
+          <div className="flex flex-wrap justify-center space-x-6">
+            <a href="#" className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300 mb-2 md:mb-0">Privacy Policy</a>
+            <a href="#" className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300 mb-2 md:mb-0">Terms of Service</a>
+            <a href="#" className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300 mb-2 md:mb-0">Accessibility</a>
           </div>
         </div>
       </div>
