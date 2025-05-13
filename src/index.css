@@ -1,0 +1,216 @@
+/* Import Tailwind CSS using the new v4 syntax */
+@import "tailwindcss";
+
+/* Theme configuration using @theme directive instead of tailwind.config.js */
+@theme {
+  /* Colors */
+  --color-primary-500: #646cff;
+  --color-primary-600: #535bf2;
+  --color-dark-900: #242424;
+  --color-light-100: #ffffff;
+  
+  /* Refined Brand Colors - Updated 2025 Palette */
+  --color-garnet: #D72631;       /* Soft Crimson - Secondary Accent */
+  --color-darkPlum: #121212;     /* Deeper Charcoal - Primary Background */
+  --color-goldTan: #F2C94C;      /* Muted Gold - Accent Color */
+  --color-gold: #FFDD57;         /* Brighter Gold for hover states and highlights */
+  --color-warmGray: #1E1E1E;     /* Darker Gray - Alternative Background */
+  --color-ivory: #F8F4EC;        /* Warm Off-White - Primary Text Color */
+  --color-lightIvory: #E0DDD7;   /* Slightly darker off-white - Secondary Text */
+  --color-brightGarnet: #E5383B; /* Slightly brighter crimson for hover states */
+  --color-cardBg: #252525;       /* Card background color */
+  --color-cardBgHover: #2C2C2C;  /* Card background hover state */
+  
+  /* Fonts */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Roboto', system-ui, sans-serif;
+  
+  /* Spacing */
+  --spacing: 0.25rem;
+}
+
+/* Dark mode configuration */
+@variant dark (&:where(.dark, .dark *));
+
+/* Global styles */
+@utility base-styles {
+  :root {
+    color-scheme: light dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* For sticky nav and anchor links */
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    @apply font-body text-base bg-(--color-darkPlum) text-(--color-ivory);
+    background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.99), rgba(30, 30, 30, 0.94));
+  }
+
+  /* Enhanced Typography Styles with new font hierarchy */
+  .hero-title {
+    @apply text-6xl md:text-7xl font-bold text-(--color-ivory) font-display tracking-tight;
+  }
+
+  .section-title {
+    @apply text-4xl font-bold text-(--color-garnet) font-display mb-4 relative;
+  }
+
+  /* Add visual line indicator for section headers */
+  .section-title-decorated::after {
+    content: '';
+    @apply absolute left-0 -bottom-3 w-16 h-1 bg-gradient-to-r from-(--color-goldTan) to-(--color-gold) rounded;
+  }
+
+  .section-title-centered {
+    @apply text-center after:left-1/2 after:-translate-x-1/2;
+  }
+
+  .subtitle {
+    @apply text-2xl font-semibold text-(--color-garnet) font-display mb-3;
+  }
+
+  .body-text {
+    @apply text-base text-(--color-ivory) font-body leading-relaxed;
+  }
+
+  /* Improved Button Styles */
+  .btn-primary {
+    @apply bg-(--color-garnet) text-white px-5 py-2.5 rounded-full shadow-md hover:bg-(--color-brightGarnet) hover:shadow-lg transition-all duration-300 font-semibold inline-flex items-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-(--color-goldTan) text-(--color-darkPlum) px-5 py-2.5 rounded-full shadow-md hover:bg-(--color-gold) hover:shadow-lg transition-all duration-300 font-semibold inline-flex items-center gap-2;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent border-2 border-(--color-goldTan) text-(--color-goldTan) px-5 py-2.5 rounded-full shadow-sm hover:border-(--color-gold) hover:text-(--color-gold) hover:shadow-lg transition-all duration-300 font-semibold inline-flex items-center gap-2;
+  }
+  
+  /* Enhanced utility classes */
+  .btn-base {
+    @apply inline-flex items-center py-2 px-5 rounded-md font-semibold transition-all duration-300;
+  }
+  
+  .section-wrapper {
+    @apply max-w-7xl mx-auto px-6 py-20;
+  }
+  
+  .section-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-(--color-goldTan/30) to-transparent my-16;
+  }
+  
+  .card {
+    @apply bg-(--color-cardBg) rounded-lg shadow-md p-6 hover:bg-(--color-cardBgHover) hover:shadow-lg transition-all duration-300 border border-(--color-warmGray/30);
+  }
+  
+  .card-hover {
+    @apply hover:translate-y-[-4px] hover:shadow-xl;
+  }
+  
+  .link {
+    @apply text-(--color-garnet) hover:text-(--color-brightGarnet) transition-colors duration-300;
+  }
+
+  /* Improved link styles with transitions */
+  a {
+    @apply font-medium text-(--color-goldTan) no-underline transition-colors duration-300;
+  }
+
+  a:hover {
+    @apply text-(--color-gold);
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-display;
+  }
+
+  h1 {
+    @apply text-5xl leading-tight;
+  }
+  
+  h2 {
+    @apply text-4xl leading-tight;
+  }
+  
+  h3 {
+    @apply text-2xl leading-tight;
+  }
+
+  button {
+    @apply rounded-md border border-transparent cursor-pointer transition-all duration-300;
+  }
+
+  button:focus-visible {
+    @apply outline outline-4 outline-blue-400;
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    @apply opacity-0 translate-y-8;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Accessibility improvements */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  }
+  
+  /* Hide scrollbar but allow scrolling */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Tab focus styles */
+  .tab-focus {
+    @apply relative transition-all duration-300;
+  }
+  
+  .tab-focus[aria-selected="true"] {
+    @apply bg-(--color-goldTan) text-(--color-darkPlum) shadow-md;
+  }
+  
+  .tab-focus[aria-selected="true"]::after {
+    content: '';
+    @apply absolute h-1 bg-(--color-gold) bottom-0 left-0 right-0;
+  }
+  
+  /* Enhanced Container styles for dark theme */
+  .dark-container {
+    @apply bg-(--color-cardBg) rounded-lg border border-(--color-warmGray) shadow-lg;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Glow effects for dark mode */
+  .glow-gold {
+    box-shadow: 0 0 15px rgba(242, 201, 76, 0.3);
+  }
+  
+  .glow-crimson {
+    box-shadow: 0 0 15px rgba(215, 38, 49, 0.3);
+  }
+  
+  .glow-subtle {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3), 0 4px 15px rgba(242, 201, 76, 0.1);
+  }
+}

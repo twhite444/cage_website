@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Custom animation for logo spin */
+@utility logo-animation {
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .logo {
+    @apply h-24 p-6 transition duration-300;
+    will-change: filter;
+  }
+
+  .logo:hover {
+    @apply drop-shadow-md;
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+}
+
+#root {
+  @apply w-full mx-auto p-0 text-center;
+}
+
+.card {
+  @apply p-8;
+}
+
+.read-the-docs {
+  @apply text-gray-500;
+}

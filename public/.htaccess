@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /~tommobat/cage_website/
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /~tommobat/cage_website/index.html [L]

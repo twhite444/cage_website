@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>The Cage - Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #F8F4EC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .redirect-container {
+      max-width: 500px;
+      padding: 2rem;
+      background-color: #252525;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 15px rgba(242, 201, 76, 0.3);
+      border: 1px solid rgba(242, 201, 76, 0.2);
+    }
+    h1 {
+      color: #D72631;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .loader {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(242, 201, 76, 0.3);
+      border-radius: 50%;
+      border-top-color: #F2C94C;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <script>
+    // Redirect with HashRouter approach
+    window.onload = function() {
+      // Extract the path from the URL
+      var path = window.location.pathname;
+      var base = '/~tommobat/cage_website/';
+      
+      // If the path starts with the base, remove it
+      if (path.startsWith(base)) {
+        path = path.slice(base.length);
+      }
+      
+      // Clean path if it has a trailing slash
+      if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+      }
+      
+      // Determine if this is a known route
+      var isKnownRoute = ['menu', 'events'].indexOf(path) >= 0;
+      
+      // Redirect to the correct hash route
+      var redirectUrl = base + '#' + (isKnownRoute ? '/' + path : '/');
+      
+      // Wait a second to show the loading animation, then redirect
+      setTimeout(function() {
+        window.location.href = redirectUrl;
+      }, 1000);
+    };
+  </script>
+</head>
+<body>
+  <div class="redirect-container">
+    <h1>The Cage</h1>
+    <p>We're redirecting you to the correct page. Just a moment...</p>
+    <div class="loader"></div>
+  </div>
+</body>
+</html>

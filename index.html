@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/tab_logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Cage | Bates College Café</title>
+    <script>
+      // Simple error logging to console
+      window.addEventListener('error', function(e) {
+        console.error('Caught error:', e.message, e.filename, e.lineno);
+        return false;
+      });
+      
+      // Check if coming from a redirect
+      (function() {
+        var redirect = sessionStorage.redirectUrl;
+        if (redirect && redirect !== window.location.href) {
+          // Clear it
+          sessionStorage.removeItem('redirectUrl');
+          // Update the URL without causing a page refresh
+          if (typeof history.replaceState === 'function') {
+            history.replaceState(null, null, redirect);
+          }
+        }
+      })();
+    </script>
+    <!-- Add Google Fonts for improved typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
