@@ -78,44 +78,43 @@ export const weeklyEvents = [
   {
     day: 'Monday',
     events: [
-      { name: 'Open Mic Night', time: '7:00 PM - 9:00 PM', description: 'Share your talents with our supportive community' }
+      { name: 'Chill Vibes', time: 'All Evening', description: 'Relax and unwind. Check Instagram for spontaneous happenings!', image: null }
     ]
   },
   {
     day: 'Tuesday',
     events: [
-      { name: 'Book Club', time: '6:30 PM - 8:00 PM', description: 'Join our monthly discussion on selected readings' }
+      { name: 'Open Mic Night', time: '7:00 PM - Late', description: 'Showcase your talent or enjoy the show!', image: '/open_mic_night_tuesday.png' }
     ]
   },
   {
     day: 'Wednesday',
     events: [
-      { name: 'Trivia Night', time: '7:30 PM - 9:30 PM', description: 'Form teams and compete for prizes and bragging rights' }
+      { name: 'Trivia Night', time: '7:30 PM - 9:30 PM', description: 'Test your knowledge and win prizes!', image: '/pool_tournament_wednesday.png' } // Placeholder
     ]
   },
   {
     day: 'Thursday',
     events: [
-      { name: 'Acoustic Sessions', time: '6:00 PM - 8:00 PM', description: 'Live acoustic performances from local artists' }
+      { name: 'Karaoke Night', time: '8:00 PM - Late', description: 'Sing your heart out!', image: '/open_mic_night_tuesday.png' } // Placeholder
     ]
   },
   {
     day: 'Friday',
     events: [
-      { name: 'Art Exhibition', time: '5:00 PM - 8:00 PM', description: 'Featuring rotating exhibits from local artists' }
+      { name: 'Live Music Weekend', time: '9:00 PM - Close', description: 'Catch the best local bands and DJs. Follow our Instagram for weekly lineups!', special: 'live-music', image: null } // Placeholder for a potential general live music poster
     ]
   },
   {
     day: 'Saturday',
     events: [
-      { name: 'Coffee Tasting', time: '10:00 AM - 12:00 PM', description: 'Sample our specialty roasts with our expert baristas' },
-      { name: 'Live DJ', time: '8:00 PM - 11:00 PM', description: 'Weekend vibes with rotating guest DJs' }
+      { name: 'Live Music Weekend', time: '9:00 PM - Close', description: 'The party continues! Check Instagram for who is playing tonight!', special: 'live-music', image: null } // Placeholder for a potential general live music poster
     ]
   },
   {
     day: 'Sunday',
     events: [
-      { name: 'Poetry Reading', time: '3:00 PM - 5:00 PM', description: 'Relaxing afternoon with local poets and writers' }
+      { name: 'Sunday Funday', time: 'Afternoon - Evening', description: 'Special events and relaxed vibes. Check Instagram for details!', image: '/open_mic_night_tuesday.png' } // Placeholder
     ]
   }
 ];
@@ -123,11 +122,13 @@ export const weeklyEvents = [
 // Business information
 export const businessInfo = {
   name: 'The Cage',
-  address: '99 Ash St, Suite 1, Lewiston, ME 04240',
+  address: '97 Ash St, Lewiston, ME 04240',
   phone: '(207) 783-0668',
   email: 'kelsullivan2001@gmail.com',
   social: {
-    instagram: 'batescagestuff'
+    instagram: 'https://www.instagram.com/batescagestuff',
+    facebook: 'https://www.facebook.com/The-Cage-100054271431513/', 
+    yelp: 'https://www.yelp.com/biz/the-cage-lewiston' 
   },
   hours: {
     monday: '12:00 PM - Close',

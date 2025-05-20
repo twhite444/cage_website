@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import PlanYourVisit from '../components/PlanYourVisit';
-import HoursContact from '../components/HoursContact';
+// import HoursContact from '../components/HoursContact'; // Removed import
 import StayConnected from '../components/StayConnected';
 import Footer from '../components/Footer';
 
@@ -11,7 +11,7 @@ const Home = () => {
       <Navbar />
       <Hero />
       <PlanYourVisit />
-      <HoursContact />
+      {/* <HoursContact /> */}{/* Removed component */}
       <StayConnected />
       <Footer />
     </div>

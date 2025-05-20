@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaFacebook, FaInstagram, FaYelp } from 'react-icons/fa'; // Import social icons
+import { businessInfo } from '../utils/constants'; // Import businessInfo for social links
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,8 +45,17 @@ const Navbar = () => {
   }, [activeSection]);
 
   const navLinks = [
-    { name: 'Menu', href: '/menu', icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z' },
-    { name: 'Events', href: '/events', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
+    { 
+      name: 'Menu', 
+      href: '/menu', 
+      // Martini glass icon (even taller stem)
+      icon: 'M4 6h16M5 6l7 9 7-9M12 15v7m-3 0h6', 
+    },
+    { 
+      name: 'Events', 
+      href: '/events', 
+      icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' 
+    },
   ];
   return (
     <header 
@@ -72,48 +83,81 @@ const Navbar = () => {
             />
           </a>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1" role="navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`relative px-4 py-2 rounded-md transition-all duration-300 font-medium ${
-                  activeSection === link.href.substring(1)
-                    ? isScrolled 
-                      ? 'text-(--color-goldTan) bg-(--color-warmGray/10)' 
-                      : 'text-(--color-goldTan) bg-(--color-ivory/10)' 
-                    : isScrolled 
-                      ? 'text-(--color-garnet) hover:text-(--color-goldTan)' 
-                      : 'text-(--color-ivory) hover:text-(--color-goldTan) hover:bg-(--color-ivory/10)'
-                }`}
-                onClick={() => {
-                  setActiveSection(link.href.substring(1));
-                }}
-                aria-current={activeSection === link.href.substring(1) ? 'page' : undefined}
+          {/* Desktop Navigation & Social Icons */}
+          <nav className="hidden md:flex items-center" role="navigation"> {/* Removed space-x-1 here, will add to links if needed */}
+            <div className="flex items-center space-x-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`relative px-4 py-2 rounded-md transition-all duration-300 font-medium ${
+                    activeSection === link.href.substring(1)
+                      ? isScrolled 
+                        ? 'text-(--color-goldTan) bg-(--color-warmGray/10)' 
+                        : 'text-(--color-goldTan) bg-(--color-ivory/10)' 
+                      : isScrolled 
+                        ? 'text-(--color-ivory) hover:text-(--color-goldTan)' // Changed from text-(--color-garnet)
+                        : 'text-(--color-ivory) hover:text-(--color-goldTan) hover:bg-(--color-ivory/10)'
+                  }`}
+                  onClick={() => {
+                    setActiveSection(link.href.substring(1));
+                  }}
+                  aria-current={activeSection === link.href.substring(1) ? 'page' : undefined}
+                >
+                  <span className="flex items-center">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="h-4 w-4 mr-1.5" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={link.icon} />
+                    </svg>
+                    {link.name}
+                  </span>
+                  {activeSection === link.href.substring(1) && (
+                    <motion.div 
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-(--color-gold) mx-4"
+                      layoutId="navIndicator"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                </a>
+              ))}
+            </div>
+            
+            {/* Social Media Icons - Desktop */}
+            <div className="flex items-center space-x-2 pl-4 ml-4 border-l border-ivory/20">
+              <a 
+                href={`https://instagram.com/${businessInfo.social.instagram}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Instagram"
+                className="p-2 rounded-full hover:bg-goldTan/20 transition-colors duration-300 group"
               >
-                <span className="flex items-center">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-4 w-4 mr-1.5" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={link.icon} />
-                  </svg>
-                  {link.name}
-                </span>
-                {activeSection === link.href.substring(1) && (
-                  <motion.div 
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-(--color-gold) mx-4"
-                    layoutId="navIndicator"
-                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                  />
-                )}
+                <FaInstagram className={`w-5 h-5 ${isScrolled ? 'text-ivory' : 'text-ivory'} group-hover:text-goldTan transition-colors duration-150`} /> 
               </a>
-            ))}
+              <a 
+                href={businessInfo.social.facebook} // Use link from constants.js
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Facebook"
+                className="p-2 rounded-full hover:bg-goldTan/20 transition-colors duration-300 group"
+              >
+                <FaFacebook className={`w-5 h-5 ${isScrolled ? 'text-ivory' : 'text-ivory'} group-hover:text-goldTan transition-colors duration-150`} />
+              </a>
+              <a 
+                href={businessInfo.social.yelp} // Use link from constants.js
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Yelp"
+                className="p-2 rounded-full hover:bg-goldTan/20 transition-colors duration-300 group"
+              >
+                <FaYelp className={`w-5 h-5 ${isScrolled ? 'text-ivory' : 'text-ivory'} group-hover:text-goldTan transition-colors duration-150`} />
+              </a>
+            </div>
           </nav>
           
           {/* Mobile menu button */}
@@ -127,7 +171,7 @@ const Navbar = () => {
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               className={`h-6 w-6 transition-colors ${
-                isScrolled ? 'text-(--color-garnet)' : 'text-(--color-ivory)'
+                isScrolled ? 'text-(--color-ivory)' : 'text-(--color-ivory)' // Changed from text-(--color-garnet)
               }`} 
               fill="none" 
               viewBox="0 0 24 24" 
@@ -154,8 +198,9 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="md:hidden"
-          >            <div className={`px-4 py-3 space-y-0.5 ${
-              isScrolled ? 'bg-(--color-cardBg) shadow-lg' : 'bg-(--color-darkPlum)'
+          >
+            <div className={`px-4 pt-3 pb-4 space-y-1 ${
+              isScrolled ? 'bg-cardBg shadow-lg' : 'bg-darkPlum'
             }`}>
               {navLinks.map((link) => (
                 <a
@@ -167,7 +212,7 @@ const Navbar = () => {
                         ? 'bg-(--color-goldTan/20) text-(--color-goldTan)' 
                         : 'bg-(--color-goldTan/20) text-(--color-goldTan)' 
                       : isScrolled 
-                        ? 'text-(--color-garnet) hover:bg-(--color-goldTan/10)' 
+                        ? 'text-(--color-ivory) hover:bg-(--color-goldTan/10)' // Changed from text-(--color-garnet)
                         : 'text-(--color-ivory) hover:bg-(--color-ivory/10)'
                   }`}
                   onClick={() => {
@@ -191,6 +236,36 @@ const Navbar = () => {
                   </span>
                 </a>
               ))}
+              {/* Social Media Icons - Mobile */}
+              <div className="pt-4 mt-4 border-t border-ivory/10 flex justify-center space-x-5">
+                <a 
+                  href={`https://instagram.com/${businessInfo.social.instagram}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Instagram"
+                  className="p-2 rounded-full hover:bg-goldTan/20 transition-colors duration-300 group"
+                >
+                  <FaInstagram className={`w-7 h-7 ${isScrolled ? 'text-ivory' : 'text-ivory'} group-hover:text-goldTan transition-colors duration-150`} />
+                </a>
+                <a 
+                  href={businessInfo.social.facebook} // Use link from constants.js
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Facebook"
+                  className="p-2 rounded-full hover:bg-goldTan/20 transition-colors duration-300 group"
+                >
+                  <FaFacebook className={`w-7 h-7 ${isScrolled ? 'text-ivory' : 'text-ivory'} group-hover:text-goldTan transition-colors duration-150`} />
+                </a>
+                <a 
+                  href={businessInfo.social.yelp} // Use link from constants.js
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Yelp"
+                  className="p-2 rounded-full hover:bg-goldTan/20 transition-colors duration-300 group"
+                >
+                  <FaYelp className={`w-7 h-7 ${isScrolled ? 'text-ivory' : 'text-ivory'} group-hover:text-goldTan transition-colors duration-150`} />
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
