@@ -45,14 +45,15 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px; /* For sticky nav and anchor links */
+    @apply bg-darkPlum; /* Added dark background */
   }
 
   body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
-    @apply font-body text-base bg-(--color-darkPlum) text-(--color-ivory);
-    background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.99), rgba(30, 30, 30, 0.94));
+    @apply font-body text-base text-ivory bg-darkPlum; /* Ensured dark background and text color */
+    /* background-image: linear-gradient(to bottom, rgba(18, 18, 18, 0.99), rgba(30, 30, 30, 0.94)); */ /* Commented out conflicting gradient */
   }
 
   /* Enhanced Typography Styles with new font hierarchy */

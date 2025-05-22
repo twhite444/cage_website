@@ -96,7 +96,7 @@ export const weeklyEvents = [
   {
     day: 'Thursday',
     events: [
-      { name: 'Karaoke Night', time: '8:00 PM - Late', description: 'Sing your heart out!', image: '/open_mic_night_tuesday.png' } // Placeholder
+      { name: 'Karaoke Night', time: '8:00 PM - Late', description: 'Sing your heart out!', image: '/karaoke_night_thursday.png' } // Placeholder
     ]
   },
   {
@@ -114,7 +114,7 @@ export const weeklyEvents = [
   {
     day: 'Sunday',
     events: [
-      { name: 'Sunday Funday', time: 'Afternoon - Evening', description: 'Special events and relaxed vibes. Check Instagram for details!', image: '/open_mic_night_tuesday.png' } // Placeholder
+      { name: 'Sunday Funday', time: 'Afternoon - Evening', description: 'Special events and relaxed vibes. Check Instagram for details!', image: '/sunday_funday.png' }
     ]
   }
 ];
@@ -126,7 +126,7 @@ export const businessInfo = {
   phone: '(207) 783-0668',
   email: 'kelsullivan2001@gmail.com',
   social: {
-    instagram: 'https://www.instagram.com/batescagestuff',
+    instagram: 'https://www.instagram.com/batescagestuff/',
     facebook: 'https://www.facebook.com/The-Cage-100054271431513/', 
     yelp: 'https://www.yelp.com/biz/the-cage-lewiston' 
   },

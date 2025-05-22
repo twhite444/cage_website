@@ -1,12 +1,17 @@
+import React from 'react'; // Removed Suspense and lazy
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+import LoadingIndicator from './components/LoadingIndicator'; // Kept for now, may be used elsewhere
+
+// Standard direct imports for page components
 import Home from './pages/Home';
 import MenuPage from './pages/MenuPage';
 import EventsPage from './pages/EventsPage';
-import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      {/* Removed Suspense wrapper */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<MenuPage />} />

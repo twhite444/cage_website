@@ -47,17 +47,17 @@ const Footer = () => {
             }
           }}
         >{/* Column 1: Logo & About */}
-          <motion.div variants={footerAnimation}>
-            <h3 className="text-3xl font-bold font-display text-garnet mb-4">The Cage</h3>
-            <p className="text-lg mb-6 text-gold">
+          <motion.div variants={footerAnimation} className="flex flex-col items-center"> {/* Added flex flex-col items-center */}
+            <h3 className="text-3xl font-bold font-display text-garnet mb-4 text-center">The Cage</h3> {/* Added text-center */}
+            <p className="text-lg mb-6 text-gold text-center"> {/* Added text-center */}
               Good Grog. Good Times.
             </p>
             
             
             {/* Social Media Icons with improved styling */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-4"> {/* This div will be centered by its parent's items-center */}
               <a 
-                href={`https://instagram.com/${businessInfo.social.instagram}`} 
+                href={businessInfo.social.instagram} // Corrected to use the full URL from constants
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Instagram"
@@ -66,7 +66,7 @@ const Footer = () => {
                 <FaInstagram size={18} className="text-gold group-hover:text-gold" />
               </a>
               <a 
-                href="https://facebook.com" 
+                href={businessInfo.social.facebook} // Corrected to use Facebook URL from constants
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Facebook"
@@ -75,7 +75,7 @@ const Footer = () => {
                 <FaFacebook size={18} className="text-gold group-hover:text-gold" />
               </a>
               <a 
-                href="https://yelp.com" 
+                href={businessInfo.social.yelp} // Corrected to use Yelp URL from constants
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Yelp"
