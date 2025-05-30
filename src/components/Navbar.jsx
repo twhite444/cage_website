@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaFacebook, FaInstagram, FaYelp } from 'react-icons/fa'; // Import social icons
 import { businessInfo } from '../utils/constants'; // Import businessInfo for social links
 
-const Navbar = () => {
+const Navbar = ({ isOnMenuPage, isOnEventsPage }) => { // Added isOnEventsPage prop
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,8 +60,8 @@ const Navbar = () => {
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-(--color-darkPlum)/95 backdrop-blur-sm shadow-md py-2 border-b border-(--color-goldTan/20)' 
+        isScrolled || isOnMenuPage || isOnEventsPage // Added isOnEventsPage to condition
+          ? `bg-darkPlum/95 backdrop-blur-sm shadow-md py-2 border-b border-goldTan/20`
           : 'bg-transparent py-4'
       }`}
       role="banner"
@@ -78,7 +78,7 @@ const Navbar = () => {
               src="/header_logo_dark_wo_slogan_transparent.png" 
               alt="The Cage - Good Grog, good times" 
               className={`h-14 transition-transform group-hover:scale-105 ${
-                isScrolled ? 'py-1' : 'py-0'
+                (isScrolled || isOnMenuPage || isOnEventsPage) ? 'py-1' : 'py-0' // Added isOnEventsPage to condition
               }`}
             />
           </a>
@@ -92,12 +92,12 @@ const Navbar = () => {
                   href={link.href}
                   className={`relative px-4 py-2 rounded-md transition-all duration-300 font-medium ${
                     activeSection === link.href.substring(1)
-                      ? isScrolled 
-                        ? 'text-(--color-goldTan) bg-(--color-warmGray/10)' 
-                        : 'text-(--color-goldTan) bg-(--color-ivory/10)' 
-                      : isScrolled 
-                        ? 'text-(--color-ivory) hover:text-(--color-goldTan)' // Changed from text-(--color-garnet)
-                        : 'text-(--color-ivory) hover:text-(--color-goldTan) hover:bg-(--color-ivory/10)'
+                      ? (isScrolled || isOnMenuPage || isOnEventsPage) // Added isOnEventsPage
+                        ? 'text-goldTan bg-warmGray/10' 
+                        : 'text-goldTan bg-ivory/10' 
+                      : (isScrolled || isOnMenuPage || isOnEventsPage) // Added isOnEventsPage
+                        ? 'text-ivory hover:text-goldTan'
+                        : 'text-ivory hover:text-goldTan hover:bg-ivory/10'
                   }`}
                   onClick={() => {
                     setActiveSection(link.href.substring(1));

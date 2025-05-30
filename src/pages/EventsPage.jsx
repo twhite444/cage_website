@@ -5,24 +5,16 @@ import Footer from '../components/Footer';
 
 const EventsPage = () => {
   return (
-    <div className="relative flex flex-col min-h-screen w-full overflow-x-hidden">
-      {/* Background Image Div - covers the initial screen height */}
-      <div className="absolute top-0 left-0 w-full h-screen z-[-1]"> {/* Positioned behind, covers viewport height */}
-        <img 
-          src="/cage_bar.png" 
-          alt="" // Decorative background image
-          className="w-full h-full object-cover opacity-50" // Covers area, slight opacity
-        />
-      </div>
+    <div className="flex flex-col min-h-screen w-full overflow-x-hidden bg-darkPlum"> {/* Ensure root div has dark background and flex col */}
+      {/* Removed the absolute positioned background image div */}
 
-      <Navbar /> {/* Navbar will sit on top of the background div */}
+      <Navbar isOnEventsPage={true} /> {/* Pass isOnEventsPage prop */}
       
-      <main className="flex-grow pt-20 w-full"> {/* pt-20 offsets content from Navbar */}
+      <main className="flex-grow pt-[4.5rem] w-full"> {/* Consistent padding-top */}
         <WeeklyEvents />
-        {/* Removed the bottom placeholder img tag */}
       </main>
       
-      <Footer /> {/* Footer will also sit on top */}
+      <Footer />
     </div>
   );
 };

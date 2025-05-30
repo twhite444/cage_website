@@ -89,37 +89,63 @@ const WeeklyEvents = () => {
   const saturdayEvent = weeklyEvents.find(d => d.day === 'Saturday')?.events[0];
 
   return (
-    <section id="events" className="py-16 md:py-24 bg-darkPlum text-ivory">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
-        >
-          <h2 className="section-title section-title-centered text-goldTan text-4xl md:text-5xl mb-4 font-display">Weekly Shenanigans</h2>
-          <p className="body-text max-w-xl md:max-w-2xl mx-auto text-lg md:text-xl text-ivory/80">
-            Catch these events weekly! For live music on Friday & Saturday, check our Instagram for the latest.
-          </p>
-        </motion.div>
-
-        {/* Grid for Poster-like Events */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12 md:mb-16">
-          {posterEvents.map(daySchedule => (
-            daySchedule.events.map(event => (
-              <EventPosterCard key={`${daySchedule.day}-${event.name}`} event={event} />
-            ))
-          ))}
+    // Wrap with a div to contain the hero and the events content
+    <div>
+      {/* Events Hero Section */}
+      <section className="relative w-full overflow-hidden min-h-[60vh] md:min-h-[50vh] flex flex-col items-center justify-center py-10 md:py-16">
+        {/* Background Image and Gradient Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/bar_photos/Le_Cage_28_APL.jpg" // Updated image
+            alt="The Cage bar interior - events background"
+            className="w-full h-full object-cover" // Removed opacity-40
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-darkPlum/80 via-darkPlum/60 to-darkPlum/90"></div>
         </div>
 
-        {/* Section for Friday/Saturday Instagram Callout */}
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-6 md:gap-8">
-          {(fridayEvent || saturdayEvent) && <LiveMusicInstagramCard />}
+        {/* Content for the Hero part (Title) */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 md:mb-10 w-full"
+          >
+            <div className="flex flex-col items-center justify-center mb-6">
+              <h2 className="section-title section-title-decorated section-title-centered text-5xl md:text-6xl mb-8 text-goldTan">Weekly Shenanigans</h2>
+              <div className="w-24 h-1 bg-gold rounded-full"></div>
+            </div>
+            <p className="body-text max-w-2xl mx-auto text-xl leading-relaxed font-medium text-ivory">
+              Catch these events weekly! For live music on Friday & Saturday, check our Instagram for the latest.
+            </p>
+          </motion.div>
         </div>
+      </section>
 
-      </div>
-    </section>
+      {/* Actual Events Content Section */}
+      <section id="events" className="py-10 md:py-12 bg-warmGray text-ivory">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          {/* Removed the redundant title and paragraph here as it's now in the hero */}
+          
+          {/* Grid for Poster-like Events */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12 md:mb-16">
+            {posterEvents.map(daySchedule => (
+              daySchedule.events.map(event => (
+                <EventPosterCard key={`${daySchedule.day}-${event.name}`} event={event} />
+              ))
+            ))}
+          </div>
+
+          {/* Section for Friday/Saturday Instagram Callout */}
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 md:gap-8">
+            {(fridayEvent || saturdayEvent) && <LiveMusicInstagramCard />}
+          </div>
+
+        </div>
+      </section>
+    </div>
   );
 };
 
