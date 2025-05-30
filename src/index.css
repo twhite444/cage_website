@@ -269,3 +269,57 @@
     }
   }
 }
+
+/* Image Carousel Styles */
+.pic-ctn {
+  width: 100%; /* Adjusted from 100vw to fit container */
+  height: 300px; /* Default height, can be adjusted */
+  position: relative;
+  margin-top: 5vh; /* Adjusted from 15vh */
+  overflow: hidden; /* Added to prevent overflow issues */
+}
+
+.pic-ctn > img {
+  position: absolute;
+  top: 0;
+  left: 50%; /* Center the image */
+  transform: translateX(-50%); /* Adjust for centering */
+  width: auto; /* Maintain aspect ratio */
+  height: 100%; /* Fill the height of the container */
+  max-width: 90%; /* Prevent image from being too wide on larger screens */
+  object-fit: contain; /* Changed from cover to contain to see full image */
+  opacity: 0;
+  animation: display 10s infinite;
+}
+
+/* Animation for the carousel */
+@keyframes display {
+  0% {
+    transform: translateX(calc(-50% + 200px)); /* Adjust for centering */
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(-50%); /* Center position */
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(-50%); /* Center position */
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(calc(-50% - 200px)); /* Adjust for centering */
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(calc(-50% - 200px)); /* Adjust for centering */
+    opacity: 0;
+  }
+}
+
+/* Fallback for animation delays if inline styles don't work as expected, though inline should be fine */
+/*
+.pic-ctn > img:nth-child(2) { animation-delay: 2s; }
+.pic-ctn > img:nth-child(3) { animation-delay: 4s; }
+.pic-ctn > img:nth-child(4) { animation-delay: 6s; }
+.pic-ctn > img:nth-child(5) { animation-delay: 8s; }
+*/
