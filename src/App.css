@@ -43,3 +43,130 @@
 .read-the-docs {
   @apply text-gray-500;
 }
+
+/* Hero Section Gradient Background Styles */
+.gradient-background-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0; /* Behind Hero content */
+}
+
+.gradient-sphere-hero {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px); /* Increased blur for softer edges */
+  opacity: 0.6; /* Adjusted opacity */
+  mix-blend-mode: screen; /* Or 'overlay' depending on desired effect with darkPlum */
+}
+
+.sphere-1-hero {
+  width: 600px; /* Adjusted size */
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 221, 87, 0.7) 0%, transparent 70%); /* gold / 70% */
+  top: -15%; /* Adjusted position */
+  left: -10%;
+  animation: floatSphere 12s ease-in-out infinite alternate;
+}
+
+.sphere-2-hero {
+  width: 500px; /* Adjusted size */
+  height: 500px;
+  background: radial-gradient(circle, rgba(215, 38, 49, 0.6) 0%, transparent 70%); /* garnet / 60% */
+  bottom: -20%; /* Adjusted position */
+  right: -15%;
+  animation: floatSphere 15s ease-in-out infinite alternate-reverse;
+}
+
+.sphere-3-hero { /* Optional third sphere for more depth */
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(242, 201, 76, 0.5) 0%, transparent 65%); /* goldTan / 50% */
+  top: 20%;
+  right: 5%;
+  opacity: 0.4;
+  animation: floatSphere 18s ease-in-out infinite;
+}
+
+.glow-hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px; /* Adjusted size */
+  height: 800px;
+  background: radial-gradient(circle, rgba(248, 244, 236, 0.05) 0%, transparent 70%); /* ivory / 5% */
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  mix-blend-mode: overlay; /* Soft light or overlay can work well */
+}
+
+.grid-overlay-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(30, 30, 30, 0.1) 1px, transparent 1px), /* warmGray / 10% */
+    linear-gradient(to bottom, rgba(30, 30, 30, 0.1) 1px, transparent 1px); /* warmGray / 10% */
+  background-size: 50px 50px; /* Adjusted grid size */
+  opacity: 0.3; /* Adjusted opacity */
+  mix-blend-mode: overlay;
+}
+
+.noise-overlay-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/textures/noise-dark.svg'); /* Ensure this path is correct */
+  opacity: 0.08; /* Adjusted for subtlety */
+  mix-blend-mode: overlay;
+}
+
+.particles-container-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: 1; /* Above other background elements, below content */
+}
+
+.particle-hero {
+  position: absolute;
+  border-radius: 50%;
+  /* background: var(--color-ivory); Defined in JS */
+  opacity: 0; /* Initial opacity, will be animated by JS */
+  /* width and height set by JS */
+  /* left and top set by JS */
+  /* transition set by JS */
+  box-shadow: 0 0 5px rgba(248, 244, 236, 0.5), 0 0 10px rgba(248, 244, 236, 0.3); /* ivory / 50%, ivory / 30% */
+}
+
+@keyframes floatSphere {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(20px, -30px) scale(1.05);
+  }
+  100% {
+    transform: translate(-10px, 10px) scale(0.95);
+  }
+}
+
+/* Ensure Hero content is above the gradient background */
+#home .container {
+  position: relative;
+  z-index: 10;
+}
+
+#home .absolute.bottom-4 { /* Scroll indicator */
+  z-index: 20; /* Ensure it's above particles and other bg elements */
+}

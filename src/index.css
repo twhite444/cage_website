@@ -151,7 +151,7 @@
   }
 
   button:focus-visible {
-    @apply outline outline-4 outline-blue-400;
+    @apply outline-blue-400; /* Removed outline-4, outline is sufficient */
   }
   
   /* Animation utilities */
