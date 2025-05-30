@@ -35,9 +35,9 @@ const Home = () => {
       <Navbar />
       <Hero />
       <PlanYourVisit />
-      <ImageCarousel images={barImages} /> {/* Added ImageCarousel */}
-      {/* <HoursContact /> */}{/* Removed component */}
-      <StayConnected />
+      <ImageCarousel images={barImages} />
+      {/* <HoursContact /> */}
+      {/*<StayConnected /> */}
       <Footer />
     </div>
   );

@@ -1,25 +1,50 @@
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'; // Removed AnimatePresence
 import { FaChevronDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
+const heroImages = [
+  '/bar_photos/Le_Cage_01_APL.jpg',
+  '/bar_photos/Le_Cage_18_APL.jpg',
+  '/bar_photos/Le_Cage_03_APL.jpg',
+  '/bar_photos/Le_Cage_08_APL.jpg',
+  '/bar_photos/Le_Cage_06_APL.jpg',
+  '/bar_photos/Le_Cage_04_APL.jpg',
+  '/bar_photos/Le_Cage_28_APL.jpg',
+];
 
 const Hero = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 7000); // Change image every 7 seconds
+    return () => clearTimeout(timer);
+  }, [currentImageIndex]);
+
   return (
     <section 
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-darkPlum"
     >
       {/* Full-width background image with enhanced gradient overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/public/cage_bar.png" 
-          alt="" 
-          className="w-full h-full object-cover"
-          aria-hidden="true"
-          loading="eager"
-          fetchpriority="high"
-        />
+        {/* Render all images and control opacity for crossfade */}
+        {heroImages.map((imageSrc, index) => (
+          <motion.img
+            key={imageSrc} // Key for React list
+            src={imageSrc}
+            alt="" // Decorative background image
+            className="absolute inset-0 w-full h-full object-cover" // Ensure images stack and cover
+            initial={{ opacity: 0 }} // All images start hidden
+            animate={{ opacity: index === currentImageIndex ? 1 : 0 }} // Animate current to visible, others to hidden
+            transition={{ duration: 2.0, ease: "easeInOut" }} // Smooth transition for opacity
+          />
+        ))}
+        
+        {/* Gradient overlays - these will render on top of the images */}
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,18,18,0.9)] via-[rgba(30,30,30,0.75)] to-[rgba(37,37,37,0.6)]"></div>
-        {/* Additional radial gradient for vignette effect */}
         <div className="absolute inset-0" 
              style={{background: 'radial-gradient(circle, transparent 40%, rgba(18,18,18,0.4) 100%)'}}></div>
       </div>
@@ -39,7 +64,7 @@ const Hero = () => {
             Good Grog. Good Times.
           </p>
           <p className="text-xl md:text-2xl text-(--color-ivory) max-w-2xl mx-auto mb-12 font-body">
-            A neighborhood staple where Bates students and locals crowd in for cheap drinks, greasy food, and the kind of nights that turn into stories.
+            A neighborhood staple where Bates students and locals crowd in for grog, grub, and nights that turn into stories.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6"> {/* Increased gap slightly */}
