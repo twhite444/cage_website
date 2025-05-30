@@ -5,7 +5,7 @@ const PlanYourVisit = () => {
   // Create URL-safe address for Google Maps
   const mapAddress = encodeURIComponent(businessInfo.address);
     return (
-    <section id="visit" className="py-16 bg-(--color-gold) w-full">
+    <section id="visit" className="py-16 bg-darkPlum w-full text-ivory"> {/* Changed background to darkPlum, default text to ivory */}
       <div className="w-full max-w-[100%] mx-auto" style={{ 
       paddingLeft: 'clamp(1rem, 4vw, 5rem)', 
       paddingRight: 'clamp(1rem, 4vw, 5rem)' 
@@ -18,8 +18,9 @@ const PlanYourVisit = () => {
       className="mb-12 w-full"
       >
       <div className="flex flex-col items-center justify-center mb-10 w-full">
-      <h2 className="section-title section-title-decorated section-title-centered text-5xl mb-8">Plan Your Visit</h2>
-      <div className="w-24 h-1 bg-(--color-gold) rounded-full"></div>          </div>
+      <h2 className="section-title section-title-decorated section-title-centered text-5xl mb-8 text-goldTan">Plan Your Visit</h2> {/* Changed title text to goldTan */}
+      <div className="w-24 h-1 bg-gold rounded-full"></div> {/* Ensured decorative line is gold */}
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8 lg:gap-x-12 w-full">            {/* Left column with interactive map */}
       <motion.div 
@@ -91,21 +92,20 @@ const PlanYourVisit = () => {
       <div className="w-10 h-10 bg-(--color-goldTan/10) rounded-full flex items-center justify-center">
         <svg 
         xmlns="http://www.w3.org/2000/svg" 
-        className="h-5 w-5 text-(--color-goldTan)" 
+        className="h-6 w-6 text-(--color-goldTan)" // Slightly larger icon for visibility
         fill="none" 
         viewBox="0 0 24 24" 
         stroke="currentColor"
+        strokeWidth={2}
         >
-        <path 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        strokeWidth={2} 
-        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" 
-        />
+        {/* Parking Icon "P" */}
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 16V8h4a2 2 0 012 2v2a2 2 0 01-2 2H9z" />
+        <rect x="3" y="4" width="18" height="16" rx="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
       </div>                  <div>
-      <p className="body-text text-(--color-ivory)">
+      <h3 className="subtitle mb-2 font-display">Parking</h3> {/* Added Subtitle for consistency */}
+      <p className="body-text text-(--color-ivory)"> {/* Ensured body text is ivory */}
   Street parking available on Ash Street        </p>
       </div>
       </div>
@@ -153,7 +153,7 @@ const PlanYourVisit = () => {
       </motion.a>
       </div>                  <motion.a
       href="tel:+12077830668"
-      className="btn-outline bg-transparent text-(--color-garnet) border-(--color-garnet) hover:bg-(--color-garnet/10) mt-4 inline-flex items-center"
+      className="btn-outline bg-transparent text-goldTan border-goldTan hover:bg-goldTan/10 mt-4 inline-flex items-center" /* Adjusted button style for better visibility */
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       >
