@@ -5,7 +5,7 @@ import tailwind from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwind()],
-  base: process.env.NODE_ENV === 'production' ? '/~tommobat/cage_website/' : '/',
+  base: '/', // Changed for Vercel deployment
   build: {
     rollupOptions: {
       output: {
