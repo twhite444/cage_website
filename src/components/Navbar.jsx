@@ -131,7 +131,7 @@ const Navbar = ({ isOnMenuPage, isOnEventsPage }) => { // Added isOnEventsPage p
             {/* Social Media Icons - Desktop */}
             <div className="flex items-center space-x-2 pl-4 ml-4 border-l border-ivory/20">
               <a 
-                href={`https://instagram.com/${businessInfo.social.instagram}`} 
+                href={businessInfo.social.instagram} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Instagram"
@@ -239,7 +239,7 @@ const Navbar = ({ isOnMenuPage, isOnEventsPage }) => { // Added isOnEventsPage p
               {/* Social Media Icons - Mobile */}
               <div className="pt-4 mt-4 border-t border-ivory/10 flex justify-center space-x-5">
                 <a 
-                  href={`https://instagram.com/${businessInfo.social.instagram}`} 
+                  href={businessInfo.social.instagram} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label="Instagram"

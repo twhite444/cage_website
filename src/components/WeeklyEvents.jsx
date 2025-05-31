@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { weeklyEvents, businessInfo } from '../utils/constants';
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaFacebook } from 'react-icons/fa';
 
 const EventPosterCard = ({ event }) => {
   // Construct a more descriptive alt text
@@ -56,21 +56,36 @@ const LiveMusicInstagramCard = () => {
       transition={{ duration: 0.5, delay: 0.1 }}
       className="bg-gradient-to-br from-garnet to-brightGarnet rounded-xl shadow-xl hover:shadow-garnet-glow p-6 md:p-8 text-center flex flex-col justify-center items-center h-full transform hover:-translate-y-1 transition-all duration-300"
     >
-      <FaInstagram className="text-ivory text-5xl md:text-6xl mb-4" />
+      <div className="flex items-center justify-center mb-4">
+        <FaInstagram className="text-ivory text-5xl md:text-6xl" />
+        <FaFacebook className="text-ivory text-5xl md:text-6xl ml-4" />
+      </div>
       <h3 className="text-2xl md:text-3xl font-bold font-display text-ivory mb-3">Weekend Live Music!</h3>
       <p className="text-ivory/90 text-base md:text-lg mb-6">
-        Follow us on Instagram for the latest updates on Friday & Saturday night bands, DJs, and special events!
+        Follow us on Instagram & Facebook for the latest updates on Friday & Saturday night bands, DJs, and special events!
       </p>
-      <motion.a 
-        href={`https://instagram.com/${businessInfo.social.instagram}`}
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="inline-flex items-center justify-center bg-ivory text-garnet px-6 py-3 rounded-md shadow-md hover:bg-lightIvory transition-all duration-300 font-bold text-sm md:text-base"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <FaInstagram className="mr-2" /> View on Instagram
-      </motion.a>
+      <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
+        <motion.a 
+          href={businessInfo.social.instagram}
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="inline-flex items-center justify-center bg-ivory text-garnet px-6 py-3 rounded-md shadow-md hover:bg-lightIvory transition-all duration-300 font-bold text-sm md:text-base"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <FaInstagram className="mr-2" /> View on Instagram
+        </motion.a>
+        <motion.a 
+          href={businessInfo.social.facebook}
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="inline-flex items-center justify-center bg-ivory text-garnet px-6 py-3 rounded-md shadow-md hover:bg-lightIvory transition-all duration-300 font-bold text-sm md:text-base"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <FaFacebook className="mr-2" /> View on Facebook
+        </motion.a>
+      </div>
     </motion.div>
   );
 };
