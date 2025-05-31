@@ -173,7 +173,7 @@ const Footer = () => {
         {/* Bottom section with copyright and links */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-ivory/60 mb-4 md:mb-0">
-            © {currentYear} The Cage at Bates College. All rights reserved.
+            © {currentYear} The Cage. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center space-x-6">
             <a href="#" className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300 mb-2 md:mb-0">Privacy Policy</a>

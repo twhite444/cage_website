@@ -323,3 +323,107 @@
 .pic-ctn > img:nth-child(4) { animation-delay: 6s; }
 .pic-ctn > img:nth-child(5) { animation-delay: 8s; }
 */
+
+.section-project {
+  @apply py-12 bg-darkPlum;
+}
+
+.section__title {
+  @apply text-center text-goldTan text-4xl md:text-5xl font-bold block;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.section__subtitle {
+  @apply text-center text-ivory block text-lg opacity-70;
+  line-height: 1.5;
+}
+
+.section__subtitle a {
+  @apply text-ivory;
+}
+
+.project-carousel {
+  @apply relative py-12;
+}
+
+.project-strip {
+  @apply mx-auto max-w-5xl px-4;
+}
+
+.project-strip .slick-slide img {
+  @apply w-full h-auto object-cover rounded shadow-md opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-pointer;
+  /* filter: blur(1px); */ /* Optional: if you want the blur effect from the example */
+}
+
+.project-strip .slick-slide {
+    @apply p-2;
+}
+
+.project-screen {
+  @apply max-w-3xl mx-auto mb-12 relative;
+  /* If you use the screen-frame, adjust height if necessary */
+  /* height: 451px; */ 
+}
+
+.project-detail {
+  @apply mx-auto;
+  max-width: 578px; /* From example */
+  /* background-color: #333; */ /* Optional: if you want a bg color for the main image container */
+}
+
+.project-detail .slick-slide img {
+  @apply w-full h-auto object-cover rounded-lg shadow-lg;
+}
+
+/* Optional: If you want to add the macbook frame later */
+/*
+.screen-frame {
+  content: " ";
+  width: 768px; 
+  height: 451px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-image: url("https://dl.dropboxusercontent.com/u/26808427/cdn/experiments/training/macbook-frame.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 2; 
+}
+*/
+
+/* Slick Carousel specific overrides if needed */
+.slick-slider {
+  @apply relative block;
+}
+
+.slick-list {
+  @apply relative overflow-hidden block m-0 p-0;
+}
+
+.slick-track {
+  @apply relative top-0 left-0 flex;
+}
+
+.slick-slide {
+  @apply float-left h-full min-h-[1px];
+}
+
+.slick-slide img {
+  @apply block w-full;
+}
+
+.slick-loading .slick-list {
+  background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+/* Centering for the thumbnail strip */
+.project-strip .slick-center img {
+  @apply opacity-100 scale-110 transform transition-transform duration-300;
+  /* filter: blur(0); */ /* Ensure centered image is not blurred if using blur on others */
+}
