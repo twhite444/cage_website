@@ -79,7 +79,7 @@ const MenuSection = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory} // Key for AnimatePresence to track changes
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full"
+              className="w-full" // Adjusted to be a container, grid applied conditionally
               role="tabpanel"
               id={`tabpanel-${activeCategory}`}
               aria-labelledby={`tab-${activeCategory}`}
@@ -88,48 +88,56 @@ const MenuSection = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              {menuItems[activeCategory].map((item, index) => (
-                <motion.div
-                  key={`${activeCategory}-${index}-${item.name}`} // Adjusted key for better uniqueness
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }} // This will run if items are removed from the list while category is the same
-                  transition={{ duration: 0.4, delay: index * 0.05 }} // Slightly reduced delay
-                  className="bg-darkPlum rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group card-hover w-full"
-                >
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-2xl font-bold text-goldTan group-hover:text-gold transition-colors duration-300 font-display"> {/* Changed text colors */}
-                        {item.name}
-                      </h3>
-                      <span className="inline-flex items-center justify-center text-lg font-bold bg-gold text-charcoal px-3 py-1 rounded-full shadow-sm"> {/* Changed text color */}
-                        {item.price}
-                      </span>
-                    </div>
-                    
-                    <div className="w-full h-0.5 bg-goldTan my-3 group-hover:bg-gold transition-colors duration-300"></div> {/* Corrected color names */}
-                    
-                    <p className="text-ivory mb-4"> {/* Changed text color from text-gray-700 */}
-                      {item.description}
-                    </p>
-                    
-                    {/* Display options if they exist */}
-                    {item.options && item.options.length > 0 && (
-                      <div className="mt-4 pt-3 border-t border-dashed border-warmGray-700"> {/* Changed border color */}
-                        <h4 className="text-lg font-medium text-goldTan mb-2">Options</h4> {/* Changed text color */}
-                        <ul className="space-y-2">
-                          {item.options.map((option, idx) => (
-                            <li key={idx} className="flex justify-between items-center">
-                              <span className="text-ivory">{option.name}</span> {/* Changed text color from text-gray-700 */}
-                              <span className="font-medium text-goldTan">{option.price}</span> {/* Changed text color */}
-                            </li>
-                          ))}
-                        </ul>
+              {Array.isArray(menuItems[activeCategory]) ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                  {menuItems[activeCategory].map((item, index) => (
+                    <motion.div
+                      key={`${activeCategory}-${index}-${item.name}`} // Adjusted key for better uniqueness
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -30 }} // This will run if items are removed from the list while category is the same
+                      transition={{ duration: 0.4, delay: index * 0.05 }} // Slightly reduced delay
+                      className="bg-darkPlum rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group card-hover w-full"
+                    >
+                      <div className="p-6">
+                        <div className="flex justify-between items-start mb-4">
+                          <h3 className="text-2xl font-bold text-goldTan group-hover:text-gold transition-colors duration-300 font-display"> {/* Changed text colors */}
+                            {item.name}
+                          </h3>
+                          <span className="inline-flex items-center justify-center text-lg font-bold bg-gold text-charcoal px-3 py-1 rounded-full shadow-sm"> {/* Changed text color */}
+                            {item.price}
+                          </span>
+                        </div>
+                        
+                        <div className="w-full h-0.5 bg-goldTan my-3 group-hover:bg-gold transition-colors duration-300"></div> {/* Corrected color names */}
+                        
+                        <p className="text-ivory mb-4"> {/* Changed text color from text-gray-700 */}
+                          {item.description}
+                        </p>
+                        
+                        {/* Display options if they exist */}
+                        {item.options && item.options.length > 0 && (
+                          <div className="mt-4 pt-3 border-t border-dashed border-warmGray-700"> {/* Changed border color */}
+                            <h4 className="text-lg font-medium text-goldTan mb-2">Options</h4> {/* Changed text color */}
+                            <ul className="space-y-2">
+                              {item.options.map((option, idx) => (
+                                <li key={idx} className="flex justify-between items-center">
+                                  <span className="text-ivory">{option.name}</span> {/* Changed text color from text-gray-700 */}
+                                  <span className="font-medium text-goldTan">{option.price}</span> {/* Changed text color */}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-10">
+                  <p className="text-2xl text-ivory font-semibold">{menuItems[activeCategory]}</p>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
           

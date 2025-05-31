@@ -53,24 +53,7 @@ export const menuItems = {
     { name: 'Fries', price: '$4.00', description: 'Crispy golden french fries' },
     { name: 'Onion Rings', price: '$5.00', description: 'Crispy battered onion rings' }
   ],
-  drinks: [
-    { name: 'Allagash on Tap', price: '$6.50', description: 'Maine-brewed Belgian-style beer' },
-    { name: 'Baxter on Tap', price: '$6.00', description: 'Locally brewed craft beer' },
-    { name: 'Freedom\'s Edge Cider on Tap', price: '$6.00', description: 'Crisp hard cider' },
-    { name: 'Geary\'s on Tap', price: '$6.00', description: 'Traditional English-style ale' },
-    { name: 'Goose Island on Tap', price: '$6.00', description: 'Chicago-born craft beer' },
-    { name: 'Lunch on Tap', price: '$7.00', description: 'Maine Beer Company\'s popular IPA' },
-    { name: 'Lone Pine on Tap', price: '$6.50', description: 'Portland, ME craft brewery selection' },
-    { name: 'Shipyard Seasonal on Tap', price: '$6.00', description: 'Rotating seasonal beer from Shipyard' },
-    { name: 'Smuttynose on Tap', price: '$6.00', description: 'New Hampshire craft brewery selection' },
-    { name: 'Stella Artois on Tap', price: '$6.00', description: 'Belgian pilsner' },
-    { name: 'Budweiser on Tap', price: '$5.00', description: 'Classic American lager' },
-    { name: 'Bud Light on Tap', price: '$5.00', description: 'Light American lager' },
-    { name: 'Coors Light on Tap', price: '$5.00', description: 'Light lager with Rocky Mountain heritage' },
-    { name: 'Michelob Ultra on Tap', price: '$5.00', description: 'Low-carb light lager' },
-    { name: 'Miller Lite on Tap', price: '$5.00', description: 'Original light beer' },
-    { name: 'PBR on Tap', price: '$4.00', description: 'Pabst Blue Ribbon American lager' }
-  ]
+  drinks: "Drinks menu coming soon, come check out what we have on tap at the bar!"
 };
 
 // Weekly events schedule
