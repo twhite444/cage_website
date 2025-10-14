@@ -75,6 +75,7 @@ const ImageCarousel = ({ images }) => {
                     src={`/bar_photos/${image}`} 
                     alt={`Gallery image ${index + 1}`} 
                     className="w-full h-auto object-cover rounded-lg shadow-lg"
+                    loading="lazy"
                   />
                 </div>
               ))}
@@ -91,6 +92,7 @@ const ImageCarousel = ({ images }) => {
                   src={`/bar_photos/${image}`} 
                   alt={`Thumbnail ${index + 1}`} 
                   className="w-full h-auto object-cover rounded shadow-md opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  loading="lazy"
                 />
               </div>
             ))}

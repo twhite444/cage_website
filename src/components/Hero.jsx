@@ -7,10 +7,6 @@ const heroImages = [
   '/bar_photos/Le_Cage_01_APL.jpg',
   '/bar_photos/Le_Cage_18_APL.jpg',
   '/bar_photos/Le_Cage_03_APL.jpg',
-  '/bar_photos/Le_Cage_08_APL.jpg',
-  '/bar_photos/Le_Cage_06_APL.jpg',
-  '/bar_photos/Le_Cage_04_APL.jpg',
-  '/bar_photos/Le_Cage_28_APL.jpg',
 ];
 
 const Hero = () => {
@@ -40,6 +36,7 @@ const Hero = () => {
             initial={{ opacity: 0 }} // All images start hidden
             animate={{ opacity: index === currentImageIndex ? 1 : 0 }} // Animate current to visible, others to hidden
             transition={{ duration: 2.0, ease: "easeInOut" }} // Smooth transition for opacity
+            loading={index === 0 ? "eager" : "lazy"} // Load first image immediately, others lazily
           />
         ))}
         
