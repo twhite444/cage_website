@@ -1,30 +1,56 @@
 #!/bin/bash
 
-# WebP conversion script for maximum compression
-echo "Converting images to WebP format..."
+# Enhanced WebP creation script for maximum optimization
+# Creates WebP and AVIF versions for modern browsers
 
-# Create WebP versions of all compressed images
+echo "🚀 Creating next-gen image formats for maximum speed..."
+
+# Create directories for different formats
+mkdir -p public/bar_photos/webp
+mkdir -p public/bar_photos/avif
+mkdir -p public/bar_photos/thumbnails
+
+# Check if required tools are installed
+if ! command -v magick &> /dev/null; then
+    echo "❌ ImageMagick is required but not installed."
+    echo "Install it with: brew install imagemagick"
+    exit 1
+fi
+
+# Function to create optimized versions
+optimize_image() {
+    local input_file="$1"
+    local filename=$(basename "$input_file" .jpg)
+    
+    echo "🔄 Processing: $filename"
+    
+    # Create WebP version (even smaller than JPEG)
+    magick "$input_file" -quality 85 -define webp:lossless=false "public/bar_photos/webp/${filename}.webp"
+    
+    # Create AVIF version (newest, smallest format)
+    magick "$input_file" -quality 85 "public/bar_photos/avif/${filename}.avif" 2>/dev/null || echo "   ⚠️  AVIF not supported, skipping"
+    
+    # Create thumbnail versions (300px wide for carousel previews)
+    magick "$input_file" -resize 300x300^ -gravity center -extent 300x300 -quality 85 "public/bar_photos/thumbnails/${filename}_thumb.jpg"
+    magick "public/bar_photos/thumbnails/${filename}_thumb.jpg" -quality 85 "public/bar_photos/thumbnails/${filename}_thumb.webp"
+    
+    # Get file sizes for comparison
+    original_size=$(stat -f%z "$input_file" 2>/dev/null || stat -c%s "$input_file" 2>/dev/null)
+    webp_size=$(stat -f%z "public/bar_photos/webp/${filename}.webp" 2>/dev/null || stat -c%s "public/bar_photos/webp/${filename}.webp" 2>/dev/null)
+    thumb_size=$(stat -f%z "public/bar_photos/thumbnails/${filename}_thumb.webp" 2>/dev/null || stat -c%s "public/bar_photos/thumbnails/${filename}_thumb.webp" 2>/dev/null)
+    
+    echo "   📊 Original: $(numfmt --to=iec $original_size) → WebP: $(numfmt --to=iec $webp_size) → Thumb: $(numfmt --to=iec $thumb_size)"
+}
+
+# Process all JPEG images
 for image in public/bar_photos/*.jpg; do
-    if [ -f "$image" ]; then
-        filename=$(basename "$image" .jpg)
-        webp_file="public/bar_photos/${filename}.webp"
-        
-        echo "Converting: $filename.jpg -> $filename.webp"
-        
-        # Convert to WebP with high quality but smaller size
-        magick "$image" -quality 80 "$webp_file"
-        
-        # Compare sizes
-        jpg_size=$(stat -f%z "$image" 2>/dev/null || stat -c%s "$image" 2>/dev/null)
-        webp_size=$(stat -f%z "$webp_file" 2>/dev/null || stat -c%s "$webp_file" 2>/dev/null)
-        savings=$((jpg_size - webp_size))
-        percentage=$((savings * 100 / jpg_size))
-        
-        echo "  JPG: $(numfmt --to=iec $jpg_size)"
-        echo "  WebP: $(numfmt --to=iec $webp_size)"
-        echo "  Saved: $(numfmt --to=iec $savings) ($percentage%)"
-        echo ""
+    if [ -f "$image" ] && [[ ! "$image" == *"_thumb"* ]]; then
+        optimize_image "$image"
     fi
 done
 
-echo "WebP conversion complete!"
+echo ""
+echo "✅ Image optimization complete!"
+echo "📁 WebP images: public/bar_photos/webp/"
+echo "📁 AVIF images: public/bar_photos/avif/"
+echo "📁 Thumbnails: public/bar_photos/thumbnails/"

@@ -7,6 +7,19 @@
     <title>The Cage | Lewiston, Maine</title>
     <meta name="apple-mobile-web-app-title" content="The Cage">
     <meta property="og:title" content="The Cage bar" />
+    
+    <!-- Critical resource preloading for performance -->
+    <link rel="preload" href="/bar_photos/webp/Le_Cage_01_APL.webp" as="image" type="image/webp">
+    <link rel="preload" href="/bar_photos/Le_Cage_01_APL.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="/header_logo_dark_wo_slogan_transparent.png" as="image">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- DNS prefetch for potential external resources -->
+    <link rel="dns-prefetch" href="//unpkg.com">
+    
     <script>
       // Simple error logging to console
       window.addEventListener('error', function(e) {

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'; // Removed AnimatePresence
 import { FaChevronDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import OptimizedImage from './OptimizedImage';
 import React, { useState, useEffect } from 'react';
 
 const heroImages = [
@@ -28,16 +29,21 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         {/* Render all images and control opacity for crossfade */}
         {heroImages.map((imageSrc, index) => (
-          <motion.img
-            key={imageSrc} // Key for React list
-            src={imageSrc}
-            alt="" // Decorative background image
-            className="absolute inset-0 w-full h-full object-cover" // Ensure images stack and cover
-            initial={{ opacity: 0 }} // All images start hidden
-            animate={{ opacity: index === currentImageIndex ? 1 : 0 }} // Animate current to visible, others to hidden
-            transition={{ duration: 2.0, ease: "easeInOut" }} // Smooth transition for opacity
-            loading={index === 0 ? "eager" : "lazy"} // Load first image immediately, others lazily
-          />
+          <motion.div
+            key={imageSrc}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: index === currentImageIndex ? 1 : 0 }}
+            transition={{ duration: 2.0, ease: "easeInOut" }}
+          >
+            <OptimizedImage
+              src={imageSrc}
+              alt=""
+              className="w-full h-full object-cover"
+              priority={index === 0} // Load first image immediately
+              sizes="100vw"
+            />
+          </motion.div>
         ))}
         
         {/* Gradient overlays - these will render on top of the images */}

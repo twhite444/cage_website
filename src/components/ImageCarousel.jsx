@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
+import OptimizedImage from './OptimizedImage';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -71,11 +72,12 @@ const ImageCarousel = ({ images }) => {
             <Slider {...settingsDetail} ref={sliderDetailRef}> {/* Assign ref */}
               {images.map((image, index) => (
                 <div key={`detail-${index}`} className="project">
-                  <img 
-                    src={`/bar_photos/${image}`} 
-                    alt={`Gallery image ${index + 1}`} 
+                  <OptimizedImage
+                    src={`/bar_photos/${image}`}
+                    alt={`Gallery image ${index + 1}`}
                     className="w-full h-auto object-cover rounded-lg shadow-lg"
-                    loading="lazy"
+                    priority={index === 0} // Load first image immediately
+                    sizes="(max-width: 768px) 100vw, 578px"
                   />
                 </div>
               ))}
@@ -88,11 +90,12 @@ const ImageCarousel = ({ images }) => {
           <Slider {...settingsStrip} ref={sliderStripRef}> {/* Assign ref */}
             {images.map((image, index) => (
               <div key={`strip-${index}`} className="project p-2 cursor-pointer">
-                <img 
-                  src={`/bar_photos/${image}`} 
-                  alt={`Thumbnail ${index + 1}`} 
+                <OptimizedImage
+                  src={`/bar_photos/${image}`}
+                  alt={`Thumbnail ${index + 1}`}
                   className="w-full h-auto object-cover rounded shadow-md opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  loading="lazy"
+                  useThumbnail={true} // Use small thumbnails for strip
+                  sizes="150px"
                 />
               </div>
             ))}
